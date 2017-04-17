@@ -1,5 +1,4 @@
 package io.vaultproject.javaclientexample;
-import java.util.Map;
 import com.bettercloud.vault.*;
 
 /**
@@ -18,7 +17,7 @@ public class App
           */
 
         String vaulttoken = System.getenv("VAULT_TOKEN");
-        String vaulthost = System.getenv("VAULT_HOST");
+        String vaulthost = System.getenv("VAULT_ADDR");
         System.out.format( "Using Vault Host %s\n", vaulthost);
         System.out.format( "With Vault Token %s\n", vaulttoken );
         /* This should be a separate method called from Main, then
