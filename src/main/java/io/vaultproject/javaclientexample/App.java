@@ -7,11 +7,11 @@ import com.bettercloud.vault.*;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws VaultException
     {
          /* The com.bettercloud.vault driver automatically reads a
           * a number of Environment Variables like VAULT_TOKEN or
-          * VAULT_HOST, you should ensure those are set properly
+          * VAULT_ADDR, you should ensure those are set properly
           * These are displayed just to ensure you have the
           * right ones for demo purposes.
           */
@@ -23,15 +23,15 @@ public class App
         /* This should be a separate method called from Main, then
          * again for simplicity...
          */
-        final VaultConfig config = new VaultConfig();
+        final VaultConfig config = new VaultConfig().build();
         final Vault vault = new Vault(config);
         try {
         final String value = vault.logical()
                        .read("secret/hello")
                        .getData().get("value");
-        System.out.format( "value key in secret/hello is %s\n", value);
+        System.out.format( "value key in secret/hello is " + value +"\n");
         } catch(VaultException e) {
-          System.out.println("Exception thrown  :" + e);
+          System.out.println("Exception thrown: " + e);
         }
     }
 }
