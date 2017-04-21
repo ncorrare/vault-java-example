@@ -3,18 +3,20 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh '''mvn test
-'''
+        def mvnHome = tool 'maven-3.2.5'
+        sh "${mvnHome}/bin/mvn test"
       }
     }
     stage('Compile') {
       steps {
-        sh 'mvn compile'
+        def mvnHome = tool 'maven-3.2.5'
+        sh "${mvnHome}/bin/mvn compile"
       }
     }
     stage('Package') {
       steps {
-        sh 'mvn package'
+        def mvnHome = tool 'maven-3.2.5'
+        sh "${mvnHome}/bin/mvn package"
       }
     }
     stage('Success!') {
