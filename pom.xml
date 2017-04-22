@@ -34,7 +34,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>${fully.qualified.main.class}</mainClass>
+                  <mainClass>io.vaultproject.javaclientexample.App</mainClass>
                 </manifest>
               </archive>
               <descriptorRefs>
