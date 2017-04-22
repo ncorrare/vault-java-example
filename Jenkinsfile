@@ -47,7 +47,7 @@ pipeline {
           export VAULT_SKIP_VERIFY=true
           export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/java-example/secret-id)
           export VAULT_TOKEN=$(./vault write -field=token auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID})
-          java -jar target/java-client-example-1.0-SNAPSHOT.jar
+          java -jar target/java-client-example-1.0-SNAPSHOT-jar-with-dependencies.jar 
         '''
         }
       }
