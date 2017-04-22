@@ -41,7 +41,7 @@ pipeline {
     stage('Integration Tests') {
       steps {
       sh 'curl -o vault.zip https://releases.hashicorp.com/vault/0.7.0/vault_0.7.0_linux_arm.zip ; yes | unzip vault.zip'
-        withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN']) {
+        withCredentials([string(credentialsId: 'role', variable: 'ROLE_ID'),string(credentialsId: 'VAULTTOKEN', variable: 'VAULT_TOKEN')]) {
         sh '''
           export VAULT_ADDR=https://$(hostname):8200
           export VAULT_SKIP_VERIFY=true
