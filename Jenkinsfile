@@ -25,6 +25,11 @@ pipeline {
         
       }
     }
+    stage('Notify') {
+      steps {
+        echo 'Build Successful!'
+      }
+    }
   }
   environment {
     mvnHome = 'maven-3.2.5'
