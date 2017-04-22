@@ -1,6 +1,14 @@
 pipeline {
   agent any
-  stages {
+  stages { 
+    stage('Cleanup') {
+      steps {
+        withMaven(maven: 'maven-3.2.5') {
+          sh 'mvn clean'
+        }
+        
+      }
+    }
     stage('Test') {
       steps {
         withMaven(maven: 'maven-3.2.5') {
