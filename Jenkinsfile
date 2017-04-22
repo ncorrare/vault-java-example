@@ -2,20 +2,20 @@ pipeline {
   agent any
   stages {
     stage('Test') {
-      def mvnHome = tool 'maven-3.2.5'
       steps {
+        def mvnHome = tool 'maven-3.2.5'
         sh "${mvnHome}/bin/mvn test"
       }
     }
     stage('Compile') {
-      def mvnHome = tool 'maven-3.2.5'
       steps {
+        def mvnHome = tool 'maven-3.2.5'
         sh "${mvnHome}/bin/mvn compile"
       }
     }
     stage('Package') {
-      def mvnHome = tool 'maven-3.2.5'
       steps {
+        def mvnHome = tool 'maven-3.2.5'
         sh "${mvnHome}/bin/mvn package"
       }
     }
