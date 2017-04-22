@@ -1,28 +1,32 @@
 pipeline {
   agent any
-  environment {
-    mvnHome = tool 'maven-3.2.5'
-  }
   stages {
     stage('Test') {
       steps {
-        sh "${mvnHome}/bin/mvn test"
+        withMaven(maven: 'maven-3.2.5') {
+          sh 'mvn test'
+        }
+        
       }
     }
     stage('Compile') {
       steps {
-        sh "${mvnHome}/bin/mvn compile"
+        withMaven(maven: 'maven-3.2.5') {
+          sh 'mvn compile'
+        }
+        
       }
     }
     stage('Package') {
       steps {
-        sh "${mvnHome}/bin/mvn package"
+        withMaven(maven: 'maven-3.2.5') {
+          sh 'mvn package'
+        }
+        
       }
     }
-    stage('Success!') {
-      steps {
-        echo 'Build Successful!'
-      }
-    }
+  }
+  environment {
+    mvnHome = 'maven-3.2.5'
   }
 }
