@@ -105,6 +105,48 @@ public class VaultSecret {
 		  
 
 		  }
+
+	public void rotateKeys(String key) {
+				 String transit = "transit/keys/"+key+"/rotate";
+				 
+				 Map<String, String> empty = new HashMap<String, String>();
+		  
+		  LogicalResponse writeResponse = null;		   
+		  try {
+					    	  
+					    	  // Write operation
+					    	    writeResponse = vault.logical().write(transit, empty);
+					    	    
+					    	    System.out.println("keys rotated: " + writeResponse.getRestResponse().getStatus() );
+					    	    
+		      } catch(VaultException e) {
+		        System.out.println("Exception thrown: " + e);
+		      }
+			
+		  
+		
+		
+	}
+
+	public void createKeys(String key) {
+		 String transit = "transit/keys/"+key;
+		 
+		 Map<String, String> empty = new HashMap<String, String>();
+  
+  LogicalResponse writeResponse = null;		   
+  try {
+			    	  
+			    	  // Write operation
+			    	    writeResponse = vault.logical().write(transit, empty);
+			    	    
+			  //  	    System.out.println("keys created: " + writeResponse.getRestResponse().getStatus() );
+			    	    
+      } catch(VaultException e) {
+        System.out.println("Exception thrown: " + e);
+      }
+	
+		
+	}
 	
 
 }
