@@ -27,7 +27,7 @@ public class App
     	
     	
     	//Create secrets to save
-    	 Map<String, String> secrets = new HashMap<String, String>();
+    	 Map<String, Object> secrets = new HashMap<String, Object>();
   	  	 secrets.put("value", "world");
   	    	  
        

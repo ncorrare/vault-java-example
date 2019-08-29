@@ -31,12 +31,12 @@ public class VaultSecret {
 	        vault = new Vault(config);
 	}
 
-	  public LogicalResponse setKvSecret(String path, Map<String, String> values){
+	  public LogicalResponse setKvSecret(String path, Map<String, Object> secrets){
 		  LogicalResponse writeResponse = null;		   
 		  try {
 					    	  
 					    	  // Write operation
-					    	    writeResponse = vault.logical().write("secret/hello", values);
+					    	    writeResponse = vault.logical().write("secret/hello", secrets);
 		      	
 		      } catch(VaultException e) {
 		        System.out.println("Exception thrown: " + e);
@@ -65,7 +65,7 @@ public class VaultSecret {
 		  String transit = "transit/encrypt/"+key;
 		  String encodedString = Base64.getEncoder().encodeToString(plainText.getBytes());
 	        
-	        Map<String, String> toEncrypt = new HashMap<String, String>();
+	        Map<String, Object> toEncrypt = new HashMap<String, Object>();
 	        toEncrypt.put("plaintext", encodedString);
 		  
 		  LogicalResponse writeResponse = null;		   
@@ -86,7 +86,7 @@ public class VaultSecret {
 		  String transit = "transit/decrypt/"+key;
 		  String plainText = null;
 		        
-	        Map<String, String> toDecrypt = new HashMap<String, String>();
+	        Map<String, Object> toDecrypt = new HashMap<String, Object>();
 	        toDecrypt.put("ciphertext", cipherText);
 		  
 		  LogicalResponse writeResponse = null;		   
@@ -109,7 +109,7 @@ public class VaultSecret {
 	public void rotateKeys(String key) {
 				 String transit = "transit/keys/"+key+"/rotate";
 				 
-				 Map<String, String> empty = new HashMap<String, String>();
+				 Map<String, Object> empty = new HashMap<String, Object>();
 		  
 		  LogicalResponse writeResponse = null;		   
 		  try {
@@ -131,7 +131,7 @@ public class VaultSecret {
 	public void createKeys(String key) {
 		 String transit = "transit/keys/"+key;
 		 
-		 Map<String, String> empty = new HashMap<String, String>();
+		 Map<String, Object> empty = new HashMap<String, Object>();
   
   LogicalResponse writeResponse = null;		   
   try {
