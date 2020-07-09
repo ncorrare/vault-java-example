@@ -28,7 +28,7 @@ public class App
     	
     	//Create secrets to save
     	 Map<String, Object> secrets = new HashMap<String, Object>();
-  	  	 secrets.put("value", "world");
+  	  	 secrets.put("value", "from java");
   	    	  
        
         try {
@@ -43,7 +43,7 @@ public class App
         
        //////////////////////////////////////////////////////////////////////////////////////////////////////
         //Create Encryption Keys
-        String encryptionKey = "demo";
+        String encryptionKey = "testKey";
         vault.createKeys(encryptionKey);
         
         //Encrypt plaintext

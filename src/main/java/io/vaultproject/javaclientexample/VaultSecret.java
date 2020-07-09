@@ -27,8 +27,11 @@ public class VaultSecret {
 	        /* This should be a separate method called from Main, then
 	         * again for simplicity...
 	         */
-	         VaultConfig config = new VaultConfig().build();
-	        vault = new Vault(config);
+	        final VaultConfig config = new VaultConfig()
+                    .address(vaulthost)
+                    .token(vaulttoken)
+                    .build();
+	        vault = new Vault(config,1);
 	}
 
 	  public LogicalResponse setKvSecret(String path, Map<String, Object> secrets){
@@ -74,7 +77,7 @@ public class VaultSecret {
 					    	  // Write operation
 					    	    writeResponse = vault.logical().write(transit, toEncrypt);
 					    	    
-		      } catch(VaultException e) {
+		      } catch(Exception e) {
 		        System.out.println("Exception thrown: " + e);
 		      }
 			return writeResponse.getData();
@@ -98,7 +101,7 @@ public class VaultSecret {
 					    	    byte[] decodedBytes = Base64.getDecoder().decode(writeResponse.getData().get("plaintext"));
 					    	    plainText = new String(decodedBytes);
 					    	    
-		      } catch(VaultException e) {
+		      } catch(Exception e) {
 		        System.out.println("Exception thrown: " + e);
 		      }
 			return plainText;
@@ -139,9 +142,9 @@ public class VaultSecret {
 			    	  // Write operation
 			    	    writeResponse = vault.logical().write(transit, empty);
 			    	    
-			  //  	    System.out.println("keys created: " + writeResponse.getRestResponse().getStatus() );
+			    	    System.out.println("keys created: " + writeResponse.getRestResponse().getStatus() );
 			    	    
-      } catch(VaultException e) {
+      } catch(Exception e) {
         System.out.println("Exception thrown: " + e);
       }
 	
